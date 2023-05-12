@@ -1,0 +1,26 @@
+리스트나 문자열로 글자를 10만개씩 판별하다보면 시간초과가 된다.
+
+replaceAll로 하면 first와 다른값을 받게된다.
+
+stack을 사용하거나 배열에 넣고, 비교하는 방법으로 해보자
+
+class Solution {
+    public int solution(int[] ingredient) {
+        int[] stack = new int[ingredient.length];
+        int sp = 0;
+        int answer = 0;
+        for (int i : ingredient) {
+            stack[sp++] = i;
+            if (sp >= 4 && stack[sp - 1] == 1
+                && stack[sp - 2] == 3
+                && stack[sp - 3] == 2
+                && stack[sp - 4] == 1) {
+                sp -= 4;
+                answer++;
+            }
+        }
+        return answer;
+    }
+}
+
+깔끔한 코드. 스택보다 빠르다
